@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author gd238947
  */
-public class Panier {
+public class Panier extends Exception {
     ArrayList<Orange> lesOranges;
     int MAX;
     int capa;
@@ -29,6 +29,11 @@ public class Panier {
     public boolean estPlein() {
         return this.capa == this.MAX;
     }
+    
+    public void ajouterORange(Orange o) throws panierPleinException{
+        if(this.capa+1==MAX)
+        this.lesOranges.add(o);
+    }
 
     @Override
     public String toString() {
@@ -37,6 +42,37 @@ public class Panier {
             res+="\t "+o;
         }
         res+="Il reste "+capa+" place dans le panier";
+        return res;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Panier other = (Panier) obj;
+        if (this.MAX != other.MAX) {
+            return false;
+        }
+        if (this.capa != other.capa) {
+            return false;
+        }
+        boolean res=true;
+        for(int i = 0; i < this.capa;i++){
+            res=res&&(this.lesOranges.get(i)==other.lesOranges.get(i));
+        }
         return res;
     }
     
