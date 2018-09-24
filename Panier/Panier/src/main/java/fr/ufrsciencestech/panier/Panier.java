@@ -6,12 +6,14 @@
 package fr.ufrsciencestech.panier;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author gd238947
  */
-public class Panier extends Exception {
+public class Panier {
     ArrayList<Orange> lesOranges;
     int MAX;
     int capa;
@@ -30,16 +32,57 @@ public class Panier extends Exception {
         return this.capa == this.MAX;
     }
     
-    public void ajouterORange(Orange o) throws panierPleinException{
+    public void ajouterOrange(Orange o) throws panierPleinException{
         if(this.capa+1==MAX)
-        this.lesOranges.add(o);
+            throw new panierPleinException();
+        else{
+            this.lesOranges.add(o);
+            this.capa++;
+        }
     }
-
+    
+    public void retire() throws panierVideException{
+        if(this.capa-1==0)
+            throw new panierVideException();
+        else{
+            this.capa--;
+            this.lesOranges.remove(this.capa);
+        }
+    }
+    public void retire(Orange o) throws panierVideException{
+        if(this.capa-1==0)
+            throw new panierVideException();
+        else{
+            this.capa--;
+            this.lesOranges.remove(o);
+        }
+    }
+    
+    public double getPrix(){
+        double res=0.0;
+        for(Orange o : this.lesOranges)
+            res+=o.getPrix();
+        return res;
+    }
+    
+    public void boycotteOrigine(String origine){
+        ArrayList<Orange> temp =new ArrayList<Orange>();
+        for(Orange o1 : this.lesOranges){
+            if (o1.getOrigine().equals(origine)){
+                temp.add(o1);            
+            }
+        for(Orange o2 : temp)
+            try {
+                retire(o2);
+        } catch (panierVideException ex){};
+        }
+    }
+    
     @Override
     public String toString() {
         String res="Le panier contient:\n";
         for( Orange o : this.lesOranges ) {
-            res+="\t "+o;
+            res+="\t "+o+"\n";
         }
         res+="Il reste "+capa+" place dans le panier";
         return res;

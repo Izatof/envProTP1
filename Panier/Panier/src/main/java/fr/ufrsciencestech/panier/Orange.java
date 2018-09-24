@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author gd238947
  */
-public class Orange extends Exception {
+public class Orange {
     double prix;
     String origine;
     

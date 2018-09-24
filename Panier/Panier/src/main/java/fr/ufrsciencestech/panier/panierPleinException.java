@@ -9,7 +9,7 @@ package fr.ufrsciencestech.panier;
  *
  * @author gd238947
  */
-public class panierPleinException {
+public class panierPleinException extends Exception {
     public panierPleinException(){
         System.out.println("Le panier est plein!!");
     }
