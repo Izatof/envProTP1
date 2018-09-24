@@ -33,4 +33,9 @@ public class Orange extends Exception {
     public String getOrigine() {
         return origine;
     }
+
+    @Override
+    public String toString() {
+        return "Orange{" + "prix=" + prix + ", origine=" + origine + '}';
+    }
 }
