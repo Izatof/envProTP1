@@ -5,10 +5,30 @@
  */
 package fr.ufrsciencestech.panier;
 
+import java.awt.event.*;
+import javax.swing.*;
+
 /**
  *
  * @author gd238947
  */
-public class Controleur {
+public class Controleur implements ActionListener{
+
+    Panier p;
+    VueGSwing vg;
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton b = (JButton)e.getSource();
+        if(b==vg.getIncr())
+            System.out.print("plop");
+    }
+
+    public void setP(Panier p) {
+        this.p = p;
+    }
+
+    public void setVg(VueGSwing vg) {
+        this.vg = vg;
+    }
     
 }

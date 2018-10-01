@@ -15,5 +15,10 @@ public class TestMVC {
         VueConsole vc=new VueConsole();
         p.addObserver(vc);
         VueGSwing vg=new VueGSwing();
+        Controleur c=new Controleur();
+        c.setP(p);
+        c.setVg(vg);
+        p.addObserver(vg);
+        vg.addControleur(c);
     }
 }
