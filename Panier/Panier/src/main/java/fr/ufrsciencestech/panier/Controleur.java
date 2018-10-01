@@ -19,8 +19,12 @@ public class Controleur implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton b = (JButton)e.getSource();
-        if(b==vg.getIncr())
-            System.out.print("plop");
+        try{
+            if(b==vg.getIncr())
+                p.ajouterOrange(new Orange(1.00,"France"));
+            else 
+                p.retire();
+        }catch(Exception ex){}
     }
 
     public void setP(Panier p) {

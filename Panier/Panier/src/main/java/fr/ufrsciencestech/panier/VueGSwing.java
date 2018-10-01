@@ -19,8 +19,7 @@ public class VueGSwing extends VueGraphique{
     }
     
     public JButton getIncr(){
-        System.out.print("plop");
-        return new JButton();
+        return incr;
     }
     
 }

@@ -17,6 +17,8 @@ public class VueGraphique implements Observer {
     JButton incr,decr;
     JLabel label;
     public VueGraphique(){
+        incr=new JButton();
+        decr=new JButton();
         System.out.println("valeur initiale "+0);
     }
     @Override
