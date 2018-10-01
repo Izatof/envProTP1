@@ -14,7 +14,7 @@ public class TestMVC {
         Panier p=new Panier(4);
         VueConsole vc=new VueConsole();
         p.addObserver(vc);
-        VueGSwing vg=new VueGSwing();
+        plop vg=new plop();
         Controleur c=new Controleur();
         c.setP(p);
         c.setVg(vg);

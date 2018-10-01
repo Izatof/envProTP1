@@ -15,7 +15,7 @@ import javax.swing.*;
 public class Controleur implements ActionListener{
 
     Panier p;
-    VueGSwing vg;
+    plop vg;
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton b = (JButton)e.getSource();
@@ -31,7 +31,7 @@ public class Controleur implements ActionListener{
         this.p = p;
     }
 
-    public void setVg(VueGSwing vg) {
+    public void setVg(plop vg) {
         this.vg = vg;
     }
     
