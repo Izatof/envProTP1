@@ -71,11 +71,11 @@ public class Panier {
             if (o1.getOrigine().equals(origine)){
                 temp.add(o1);            
             }
+        }
         for(Orange o2 : temp)
             try {
                 retire(o2);
         } catch (panierVideException ex){};
-        }
     }
     
     @Override
@@ -84,7 +84,7 @@ public class Panier {
         for( Orange o : this.lesOranges ) {
             res+="\t "+o+"\n";
         }
-        res+="Il reste "+capa+" place dans le panier";
+        res+="Il reste "+(MAX-capa)+" place dans le panier";
         return res;
     }
 
