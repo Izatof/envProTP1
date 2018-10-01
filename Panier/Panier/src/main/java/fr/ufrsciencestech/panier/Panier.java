@@ -6,6 +6,7 @@
 package fr.ufrsciencestech.panier;
 
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author gd238947
  */
-public class Panier {
+public class Panier extends Observable{
     ArrayList<Orange> lesOranges;
     int MAX;
     int capa;
@@ -22,6 +23,13 @@ public class Panier {
         this.MAX = MAX;
         this.lesOranges = new ArrayList<Orange>();
         this.capa = 0;
+    }
+    
+    public double getPrix(){
+        double res=0.0;
+        for(Orange o : this.lesOranges)
+            res+=o.getPrix();
+        return res;
     }
     
     public boolean estVide() {
@@ -38,6 +46,8 @@ public class Panier {
         else{
             this.lesOranges.add(o);
             this.capa++;
+            setChanged();
+            notifyObservers(capa);
         }
     }
     
@@ -45,7 +55,9 @@ public class Panier {
         if(this.capa-1==0)
             throw new panierVideException();
         else{
-            this.capa--;
+            this.capa--;            
+            setChanged();
+            notifyObservers(capa);
             this.lesOranges.remove(this.capa);
         }
     }
@@ -54,16 +66,13 @@ public class Panier {
             throw new panierVideException();
         else{
             this.capa--;
+            setChanged();
+            notifyObservers(capa);
             this.lesOranges.remove(o);
         }
     }
     
-    public double getPrix(){
-        double res=0.0;
-        for(Orange o : this.lesOranges)
-            res+=o.getPrix();
-        return res;
-    }
+
     
     public void boycotteOrigine(String origine){
         ArrayList<Orange> temp =new ArrayList<Orange>();
